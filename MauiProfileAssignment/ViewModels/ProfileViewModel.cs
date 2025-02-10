@@ -67,6 +67,20 @@ namespace MauiProfileAssignment.ViewModels
                 }
             }
         }
+        private string _emailError;
+
+        public string EmailError
+        {
+            get => _emailError;
+            set
+            {
+                if (_emailError != value)
+                {
+                    _emailError = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public string Bio
         {
@@ -145,6 +159,20 @@ namespace MauiProfileAssignment.ViewModels
             ProfileImage = null;
         }
 
+        private void ValidateEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                EmailError = "Email is required";
+                return;
+            }
+
+            if (!email.EndsWith("@gmail.com", StringComparison.OrdinalIgnoreCase))
+            {
+                EmailAddress = email + "@gmail.com";
+            }
+        }
+
         private async Task SaveProfileAsync()
         {
             try
@@ -153,6 +181,12 @@ namespace MauiProfileAssignment.ViewModels
                 {
                     await Application.Current.MainPage.DisplayAlert("Error", "Name and Email are required", "OK");
                     return;
+                }
+
+                // Ensure email ends with @gmail.com
+                if (!EmailAddress.EndsWith("@gmail.com", StringComparison.OrdinalIgnoreCase))
+                {
+                    EmailAddress += "@gmail.com";
                 }
 
                 // Check if user exists

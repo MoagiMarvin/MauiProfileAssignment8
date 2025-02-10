@@ -104,19 +104,22 @@
                     <!-- Email Field -->
                     <VerticalStackLayout Spacing="8">
                         <Label Text="Email Address"
-                               TextColor="{AppThemeBinding Light=#2c3e50, Dark=#ecf0f1}"
-                               FontAttributes="Bold"/>
+           TextColor="{AppThemeBinding Light=#2c3e50, Dark=#ecf0f1}"
+           FontAttributes="Bold"/>
                         <Border StrokeShape="RoundRectangle 10"
-                                Stroke="{AppThemeBinding Light=#e0e0e0, Dark=#404040}"
-                                StrokeThickness="1"
-                                Padding="15,0">
+            Stroke="{AppThemeBinding Light=#e0e0e0, Dark=#404040}"
+            StrokeThickness="1"
+            Padding="15,0">
                             <Entry Text="{Binding EmailAddress}"
-                                   Placeholder="Enter your email"
-                                   PlaceholderColor="{AppThemeBinding Light=#999999, Dark=#666666}"
-                                   TextColor="{AppThemeBinding Light=#000000, Dark=#ffffff}"
-                                   Keyboard="Email"
-                                   HeightRequest="45"/>
+               Placeholder="Enter your email"
+               PlaceholderColor="{AppThemeBinding Light=#999999, Dark=#666666}"
+               TextColor="{AppThemeBinding Light=#000000, Dark=#ffffff}"
+               HeightRequest="45"/>
                         </Border>
+                        <Label Text="{Binding EmailError}"
+           TextColor="#e74c3c"
+           FontSize="12"
+           IsVisible="{Binding EmailError, Converter={StaticResource StringNotNullOrEmptyConverter}}"/>
                     </VerticalStackLayout>
 
                     <!-- Bio Field -->
